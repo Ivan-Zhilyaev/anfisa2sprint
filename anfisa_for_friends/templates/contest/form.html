@@ -6,10 +6,15 @@
 
 {% block content %}
   <!-- Место для HTML-формы -->
-  <form action="{% url 'contest:accepted' %}">
+  <form> <!-- action="{% url 'contest:accepted' %}" -->
     <table>
-      {{ form }}
+      {{ form.as_table }}
     </table>
     <input type="submit" value="Отправить">
   </form>
+  {% with data=request.GET %}
+    {% if form.is_valid %}
+      <h2>Рецепт мороженого "{{ data.title }}" принят на конкурс!</h2>
+    {% endif %}
+  {% endwith %}
 {% endblock %}
