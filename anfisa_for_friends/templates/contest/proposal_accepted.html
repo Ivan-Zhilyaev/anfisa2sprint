@@ -8,8 +8,12 @@
   {% for bid in bids %}
     <div> <!-- Обернём каждую запись в тег div -->
       <div> <!-- Текст обернём в отдельный вложенный div -->
-        {{ bid.id }}, {{ bid.title }}, {{ bid.price }}, {{ bid.description }}, {{ bid.comment }}
+        {{ bid.id }}, {{ bid.title }}, {{ bid.price }}, {{ bid.description }}
+        {% if bid.comment %}, {{ bid.comment }}{% endif %}
       </div>
+      <a href="{% url 'contest:edit' bid.id %}">Редактировать заявку</a>
+      |
+      <a href="{% url 'contest:delete' bid.id %}">Удалить заявку</a>
       {% if not forloop.last %}
         <hr>
       {% endif %}
