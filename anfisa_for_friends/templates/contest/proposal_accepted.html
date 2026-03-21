@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 
 {% block title %}
-  Заявка принята
+  Список заявок
 {% endblock %}
 
 {% block content %}
-  <h1>Ваша заявка принята!</h1>
+  {% for bid in bids %}
+    <div> <!-- Обернём каждую запись в тег div -->
+      <div> <!-- Текст обернём в отдельный вложенный div -->
+        {{ bid.id }}, {{ bid.title }}, {{ bid.price }}, {{ bid.description }}, {{ bid.comment }}
+      </div>
+      {% if not forloop.last %}
+        <hr>
+      {% endif %}
+    </div>
+  {% endfor %}
 {% endblock %}
