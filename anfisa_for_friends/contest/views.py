@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .forms import ContestForm
 
 def proposal_create(request):
-    form = ContestForm(request.GET or None)
+    form = ContestForm(request.POST or None)
     # Создаём словарь контекста сразу после инициализации формы.
     context = {'form': form}
     return render(request, 'contest/form.html', context)
